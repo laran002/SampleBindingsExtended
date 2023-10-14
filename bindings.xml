@@ -5,6 +5,11 @@
 -->
 <typesystem package="Universe">
 
+    <load-typesystem name="typesystem_core.xml" generate="no" />
+
+    <primitive-type name="bool"/>
+    <primitive-type name="std::string"/>
+
     <object-type name="Icecream">
         <!-- By default the ownership of an object created in Python is tied
              to the Python name pointing to it. In order for the underlying

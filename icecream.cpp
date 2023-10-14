@@ -5,7 +5,8 @@
 
 #include <iostream>
 
-Icecream::Icecream(const std::string &flavor) : m_flavor(flavor) {}
+Icecream::Icecream(const std::string &flavor)
+    : QObject(NULL), m_flavor(flavor) {}
 
 Icecream::~Icecream() = default;
 
@@ -16,7 +17,9 @@ std::string Icecream::getFlavor() const
 
 Icecream *Icecream::clone()
 {
-    return new Icecream(*this);
+    // This is ugly, I know. Just had to get around compile issue
+    // Is this possibly my problem?
+    return this; //new Icecream(*this);
 }
 
 std::ostream &operator<<(std::ostream &str, const Icecream &i)

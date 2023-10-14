@@ -4,13 +4,17 @@
 #ifndef ICECREAM_H
 #define ICECREAM_H
 
+#include <QtCore/QObject>
+
 #include "macros.h"
 
 #include <iosfwd>
 #include <string>
 
-class BINDINGS_API Icecream
+class BINDINGS_API Icecream : public QObject
 {
+    Q_OBJECT
+
 public:
     explicit Icecream(const std::string &flavor);
     virtual Icecream *clone();

@@ -119,11 +119,18 @@ set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 # =============================== CMake target - sample_library ===============================
 
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
+
+message(STATUS "qt include dir: ${Qt6Widgets_INCLUDE_DIRS}")
+message(STATUS "qt version major: ${QT_VERSION_MAJOR}")
 
 # Define the sample shared library for which we will create bindings.
 set(${sample_library}_sources icecream.cpp truck.cpp)
 add_library(${sample_library} SHARED ${${sample_library}_sources})
 set_property(TARGET ${sample_library} PROPERTY PREFIX "")
+
+target_link_libraries(${sample_library} Qt${QT_VERSION_MAJOR}::Core)
 
 # Needed mostly on Windows to export symbols, and create a .lib file, otherwise the binding
 # library can't link to the sample library.
